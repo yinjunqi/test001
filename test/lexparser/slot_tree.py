@@ -66,17 +66,17 @@ class SlotTree(object):
 
 if __name__ == '__main__':
     tree = SlotTree()
-    test_str = '今天天气不错'
-    tree.add_tree(test_str, '[D:query]')
     test_str = '今天天气不错2'
     tree.add_tree(test_str, '[D:query]')
+    test_str = '今天天气不错'
+    tree.add_tree(test_str, 'NormalText')
     tree.add_tree('abc')
     tree.add_tree('ab')
     print(tree.tree)
     # Print {'a': {'b': {'c': {'exist': True}}}, 'b': {'c': {'d': {'exist': True}}}}
-    print(tree.prefix_search("ab"))
+    print(tree.prefix_search("abc"))
     # Print False
-    print(tree.prefix_search('abc'))
+    # print(tree.get_slot('ab'))
     # Print Tree
     t = (tree.prefix_search('今天天气不错2', False))
     print(t)

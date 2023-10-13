@@ -53,7 +53,7 @@ class LexParser(object):
         """ load pattern and slot file """
         self.pattern_tree = PatternTree()
         self.slot_tree = SlotTree()
-        patterns = open(patterns_file,encoding='utf-8')
+        patterns = open(patterns_file, encoding='utf-8')
         intent_name = ''
         for line in patterns:
             line = line.strip()
@@ -65,7 +65,7 @@ class LexParser(object):
                 for i, val in enumerate(normal_texts):
                     self.slot_tree.add_tree(val, 'NormalText', is_unicode=True)
         patterns.close()
-        slots = open(slots_file,encoding='utf-8')
+        slots = open(slots_file, encoding='utf-8')
         slot_name = ''
         for line in slots:
             line = line.strip()
@@ -142,6 +142,7 @@ class LexParser(object):
                         obj.pattern_tree = PatternTree(wtree)
                         if len(obj.next_text) > 0 or "intent" not in wtree:
                             candidates.append(obj)
+
                         else:
                             results.append(obj)
                         lower = lower + 1
@@ -208,23 +209,24 @@ if __name__ == '__main__':
     lp = LexParser()
     lp.load('./data/pattern', './data/slots')
 
-    query = '我朋友知道懂法守法买保险'
-    print(query)
-    print(json.dumps(lp.parse(query), ensure_ascii=False))
-    # print(json.dumps(lp.parse(query), ensure_ascii=False).encode('utf8'))
+    # query = '我朋友知道懂法守法买保险岁'
+    # print(query)
+    # print(json.dumps(lp.parse(query), ensure_ascii=False))
+    # # print(json.dumps(lp.parse(query), ensure_ascii=False).encode('utf8'))
+    #
+    # query = '怎么买保险'
+    # print(query)
+    # print(json.dumps(lp.parse(query), ensure_ascii=False))
+    # # print(json.dumps(lp.parse(query), ensure_ascii=False).encode('utf8'))
+    #
+    # query = '介绍一下平安福'
+    # print(query)
+    # print(json.dumps(lp.parse(query), ensure_ascii=False))
+    # # print(json.dumps(lp.parse(query), ensure_ascii=False).encode('utf8'))
 
-    query = '怎么买保险'
+    query = '算乌龟王八不龟王八蛋算法'
     print(query)
-    print(json.dumps(lp.parse(query), ensure_ascii=False))
-    # print(json.dumps(lp.parse(query), ensure_ascii=False).encode('utf8'))
-
-    query = '介绍一下平安福'
-    print(query)
-    print(json.dumps(lp.parse(query), ensure_ascii=False))
-    # print(json.dumps(lp.parse(query), ensure_ascii=False).encode('utf8'))
-
-    query = '不要给我推荐保险'
-    print(query)
+    print(lp.parse(query)[1])
     print(json.dumps(lp.parse(query), ensure_ascii=False))
     # print(json.dumps(lp.parse(query), ensure_ascii=False).encode('utf8'))
     print("END")

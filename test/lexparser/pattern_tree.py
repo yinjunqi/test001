@@ -26,7 +26,7 @@ class PatternTree(object):
         while text != '':
             key = ''
             lower, upper, new_text = self.get_wildcard(text)
-            # print "lower %d,upper%d,new_text%s" % (lower,upper,new_text)
+            # print("lower %d,upper%d,new_text%s" % (lower,upper,new_text))
             if lower != -1 and upper != -1:
                 key = "[W:%d-%d]" % (lower, upper)
                 if 'WILDTREE' not in tree:
@@ -183,12 +183,13 @@ class PatternTree(object):
 if __name__ == '__main__':
     raw_tree = PatternTree()
     tree = raw_tree
-    p = '[D:asdfasdlfkjalsdkjf][W:0-20][D:city]222[W:0-20]'
-    tree.add_tree(p)
+    p = '[D:asdfasdlfkjalsdkjf][W:0-20][D:city][W:0-20]'
+    pp = tree.add_tree(p,'asv')
+    print("pp:",pp)
     print('1')
     tree.print_tree()
     # {"[D:asdfasdlfkjalsdkjf]": {"WILDTREE": {"[W:0-20]": {"upper": 20, "lower": 0, "[D:city]": {"intent": "default"}}}}}
-    _tree, not_cover_text = tree.search('[D:asdfasdlfkjalsdkjf]')
+    _tree, not_cover_text = tree.search('[D:asdfasdlfkjalsdkjf]nisha')
     print('2')
     tree.print_child_tree(_tree.get_tree())
     print("not_cover_text:%s" % (not_cover_text))
@@ -202,6 +203,6 @@ if __name__ == '__main__':
     tree.print_child_tree(_tree.get_tree())
     print("not_cover_text:%s" % (not_cover_text))
     tree.add_tree('123')
-
+    print(tree.get_slot("abc"))
     tree.print_tree()
     raw_tree.print_tree()
