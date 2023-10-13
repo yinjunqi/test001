@@ -22,6 +22,7 @@ def multithreading(data):
         res.append(q.get())	# 得到结果
     print(res)
 
+
 if __name__ == '__main__':
     data = [[1, 2, 3], [3, 4, 5], [4, 4, 4], [5, 5, 5]]
     multithreading(data)
